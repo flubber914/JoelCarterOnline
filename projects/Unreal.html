@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Projects</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-lg-5">
+                <a class="navbar-brand" href="../projects.html">Portfolio</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../aboutme.html">About Me</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="../projects.html">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../contactdetails.html">Contact Details</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- About Me Header -->
+        <header class="py-5 bg-light">
+            <div class="container px-lg-5 text-center">
+                <h1 class="display-5 fw-bold">Unreal</h1>
+                <p class="fs-4">An Unreal game made to showcase Unreal ability and Unreal graphics.</p>
+            </div>
+        </header>
+
+        <!-- About Me Text Box -->
+        <section class="py-4">
+            <div class="container px-lg-5">
+                <div class="p-4 bg-white rounded-3 shadow-sm">
+                    <p class="fs-5">
+                        This game was made at university in my final year.
+                    </p>
+                    <p class="fs-5">
+                        Click <a href="https://github.com/flubber914/Short-Unreal-Experience">here</a> to be brought to my my github page to see the source code.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <video id="myVideo" width="100%" max-width="800" controls>
+            <source src="your-video-file.mp4" type="video/mp4">
+        </video>
+
+            <br>
+
+            <!-- 2. The Buttons (passing the time in seconds) -->
+            <button onclick="jumpToTime(30)">Jump to 0:30</button>
+            <button onclick="jumpToTime(85)">Jump to 1:25</button>
+
+            <!-- 3. The JavaScript -->
+            <script>
+            function jumpToTime(seconds) {
+                // Find the video on the page
+                const video = document.getElementById("myVideo");
+                
+                // Change the time to the seconds specified
+                video.currentTime = seconds;
+                
+                // Optional: Make it play automatically after jumping
+                video.play(); 
+            }
+        </script>
+
+        <section class="video-section">
+            <h2>Watch Our Video</h2>
+            <!-- The video element -->
+            <video width="100%" max-width="800" controls>
+                <source src="../assets/16598945 CGP Graphics Assessment 2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <br>
+
+            <!-- 2. The Buttons (passing the time in seconds) -->
+            <button onclick="jumpToTime(526)">Jump To Gameplay</button>
+
+            <!-- 3. The JavaScript -->
+            <script>
+                function jumpToTime(seconds) {
+                    // Find the video on the page
+                    const video = document.getElementById("myVideo");
+                    
+                    // Change the time to the seconds specified
+                    video.currentTime = seconds;
+                    
+                    // Optional: Make it play automatically after jumping
+                    video.play(); 
+                }
+            </script>
+        </section>
+
+        <!-- Horizontal Cards Section -->
+        <section class="py-5">
+            
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">&copy; 2025 - 2026 Joel Carter. All rights reserved</p></div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
