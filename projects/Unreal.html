@@ -51,30 +51,6 @@
             </div>
         </section>
 
-        <video id="myVideo" width="100%" max-width="800" controls>
-            <source src="your-video-file.mp4" type="video/mp4">
-        </video>
-
-            <br>
-
-            <!-- 2. The Buttons (passing the time in seconds) -->
-            <button onclick="jumpToTime(30)">Jump to 0:30</button>
-            <button onclick="jumpToTime(85)">Jump to 1:25</button>
-
-            <!-- 3. The JavaScript -->
-            <script>
-            function jumpToTime(seconds) {
-                // Find the video on the page
-                const video = document.getElementById("myVideo");
-                
-                // Change the time to the seconds specified
-                video.currentTime = seconds;
-                
-                // Optional: Make it play automatically after jumping
-                video.play(); 
-            }
-        </script>
-
         <section class="video-section">
             <h2>Watch Our Video</h2>
             <!-- The video element -->
