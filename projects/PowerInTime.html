@@ -14,7 +14,7 @@
         <!-- Responsive navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-lg-5">
-                <a class="navbar-brand" href="../projects.html">Portfolio</a>
+                <a class="navbar-brand" href="../projects.html">Joel Carter</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -42,30 +42,43 @@
             <div class="container px-lg-5">
                 <div class="p-4 bg-white rounded-3 shadow-sm">
                     <p class="fs-5">
-                        This is a larger game I want to make, a 2D platformer that uses magic that must be done rhythmically to a beat, this is not implemented yet though I have the standard character controller that goes underneath that.
+                        This project is the mechanical foundation for a larger 2D platformer I am developing, which will eventually feature rhythm-based magic combat. While the rhythm mechanics are still in development, this build showcases the fluid, responsive character movement system that will drive the core gameplay.
                     </p>
                     <p class="fs-5">
-                        Click <a href="https://github.com/flubber914/Power-In-Time">here</a> to be brought to my my github page to see the source code.
-                    <p class="fs-5">
-                        !Important! Playing in browser please use the full screen at the bottom by scolling on the side of the unity window, to exit press escape.
+                        You can view the full source code on my <a href="https://github.com/flubber914/Power-In-Time" target="_blank" rel="noopener noreferrer">GitHub</a>.
                     </p>
-                    <p class="fs-5">
-                        A and D to move, shift to sprint, space to jump, Ctrl to roll, left click to attack, run into a wall to slide down, jump off a wall to wall jump, f to interact with the orb.
+                    <p class="fs-5 text-muted">
+                        <strong>Browser Note:</strong> For the best experience, scroll to the bottom of the Unity window and click the fullscreen icon. Press <kbd>ESC</kbd> to exit.
                     </p>
+                    <hr>
+                    <h5 class="fw-bold mt-4">Controls</h5>
+                    <ul class="fs-5 list-unstyled">
+                        <li><strong>Move:</strong> A / D</li>
+                        <li><strong>Jump:</strong> Space (Jump off a wall to wall-jump)</li>
+                        <li><strong>Sprint:</strong> Shift</li>
+                        <li><strong>Roll:</strong> Ctrl</li>
+                        <li><strong>Attack:</strong> Left Click</li>
+                        <li><strong>Interact:</strong> F (with the orb)</li>
+                        <li><strong>Wall Slide:</strong> Run into a wall</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <section class="game-section">
-        <h2>Play the Game</h2>
-        <div class="game-wrapper">
-            <iframe 
-            src="glbuilds/powerInTimeGl/index.html" 
-            title="Unity WebGL Game"
-            allow="fullscreen; gamepad; autoplay" 
-            loading="lazy">
-            </iframe>
-        </div>
+            <h2>Play the Game</h2>
+            <div class="game-wrapper">
+                <iframe 
+                    src="glbuilds/powerInTimeGl/index.html" 
+                    title="Unity WebGL Game"
+                    allow="fullscreen; gamepad; autoplay" 
+                    allowfullscreen="true"
+                    scrolling="no"
+                    frameborder="0"
+                    style="border: none;"
+                    loading="lazy">
+                </iframe>
+            </div>
         </section>
 
         <!-- Horizontal Cards Section -->

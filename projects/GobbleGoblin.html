@@ -14,7 +14,7 @@
         <!-- Responsive navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-lg-5">
-                <a class="navbar-brand" href="../projects.html">Portfolio</a>
+                <a class="navbar-brand" href="../projects.html">Joel Carter</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,7 +33,7 @@
         <header class="py-5 bg-light">
             <div class="container px-lg-5 text-center">
                 <h1 class="display-5 fw-bold">Gobble Goblin</h1>
-                <p class="fs-4">A game jam game made in a day.</p>
+                <p class="fs-4">24-Hour Game Jam • Unity & C#</p>
             </div>
         </header>
 
@@ -44,29 +44,35 @@
                     <p class="fs-5">
                         Play as a poisoned goblin eating fruits to survive, other goblins attack so you must switch between puzzle and shooter.
                     </p>
-                    <p class="fs-5">
-                        Click <a href="https://flubber914.itch.io/gobble-goblin">here</a> to be brought to my Itch.io page if you wish to download it or if the player isn't working.
-                    </p>
-                    <p class="fs-5">
-                        !Important! Playing in browser please use the full screen at the bottom by scolling on the side of the unity window, to exit press escape.
-                    </p>
-                    <p class="fs-5">
-                        Press Spacebar to switch between views, fruits expand once selected to form a chain.
-                    </p>
+                    <div class="bg-light p-3 rounded mb-4 border">
+                        <h4 class="fs-6 fw-bold text-uppercase text-primary mb-2">Core Mechanic</h4>
+                        <p class="small text-dark mb-0">
+                            Press <kbd>Space</kbd> to instantly swap between Puzzle View and FPS View.<br>
+                            <span class="text-muted fst-italic">Full tutorial and controls are provided in-game.</span>
+                        </p>
+                    </div>
+                    <div class="pt-3 border-top d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <span class="small text-muted">Prefer a standalone desktop build?</span>
+                        <a href="https://flubber914.itch.io/gobble-goblin" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                            View on Itch.io ↗
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="game-section">
-        <h2>Play the Game</h2>
-        <div class="game-wrapper">
-            <iframe 
-            src="glbuilds/gobbleGoblinGl/index.html" 
-            title="Unity WebGL Game"
-            allow="fullscreen; gamepad; autoplay" 
-            loading="lazy">
-            </iframe>
-        </div>
+        <section class="game-section py-5 text-center bg-dark text-white">
+            <h2 class="mb-4">Play the Game</h2>
+            <div class="game-wrapper mx-auto">
+                <iframe 
+                    src="glbuilds/gobbleGoblinGl/index.html" 
+                    title="Unity WebGL Game"
+                    allow="fullscreen; gamepad; autoplay" 
+                    allowfullscreen
+                    scrolling="no"
+                    loading="lazy">
+                </iframe>
+            </div>
         </section>
 
         <!-- Horizontal Cards Section -->

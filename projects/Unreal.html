@@ -14,7 +14,7 @@
         <!-- Responsive navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-lg-5">
-                <a class="navbar-brand" href="../projects.html">Portfolio</a>
+                <a class="navbar-brand" href="../projects.html">Joel Carter</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -32,42 +32,60 @@
         <!-- About Me Header -->
         <header class="py-5 bg-light">
             <div class="container px-lg-5 text-center">
-                <h1 class="display-5 fw-bold">Unreal</h1>
-                <p class="fs-4">An Unreal game made to showcase Unreal ability and Unreal graphics.</p>
+                <h1 class="display-5 fw-bold">Unreal Engine Showcase</h1>
+                <p class="fs-4 text-muted">A final-year university project demonstrating character rigging, gameplay mechanics, and environment building.</p>
             </div>
         </header>
 
-        <!-- About Me Text Box -->
+        <!-- About Project Text Box -->
         <section class="py-4">
             <div class="container px-lg-5">
                 <div class="p-4 bg-white rounded-3 shadow-sm">
                     <p class="fs-5">
-                        This game was made at university in my final year.
+                        For this project, I handled the core programming and technical art required to create a fully playable world. While some background environmental props were sourced from Fab, the logic, interactions, and character assets were built entirely from scratch.
                     </p>
-                    <p class="fs-5">
-                        Many assets were gathered by me from fab.com.
-                    </p>
-                    <p class="fs-5">
-                        the two characters were animated and rigged by me, I also created the texture graphics seen <a href="https://youtu.be/WEBcdCWFntM">here</a>
-                    </p>
-                    <p class="fs-5">
-                        All the gameplay elements within this including the world and interactions were created by me.
-                    </p>
-                    <p class="fs-5">
-                        Click <a href="https://github.com/flubber914/Short-Unreal-Experience">here</a> to be brought to my my github page to see the source code.
-                    </p>
-                    <p class="fs-5">
-                        Click <a href="https://youtu.be/RTKNgH3MOZg?t=523">here</a> to watch development video, skipped to the gameplay part for portfolio purposes.
-                    </p>
+                    
+                    <hr>
+                    
+                    <h5 class="fw-bold mt-4">Core Contributions</h5>
+                    <ul class="fs-5 list-unstyled mb-4">
+                        <li class="mb-2"><strong>Character Tech Art:</strong> Rigged, animated, and hand-textured the two main characters.</li>
+                        <li class="mb-2"><strong>Gameplay Programming:</strong> Scripted all world interactions, mechanics, and gameplay loops.</li>
+                        <li class="mb-2"><strong>World Building:</strong> Assembled and lit the environment to showcase Unreal's graphics capabilities.</li>
+                    </ul>
+
+                    <!-- Project Links -->
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a href="https://github.com/flubber914/Short-Unreal-Experience" target="_blank" rel="noopener noreferrer" class="btn btn-dark px-4 py-2">
+                            View Source on GitHub
+                        </a>
+                        <a href="https://youtu.be/RTKNgH3MOZg?t=523" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark px-4 py-2">
+                            Watch Gameplay Demo
+                        </a>
+                        <a href="https://youtu.be/WEBcdCWFntM" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary px-4 py-2">
+                            Texture Graphics Demo
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <div class="image-row">
-            <img src="../assets/Cave.JPG" alt="First image">
-            <img src="../assets/Caveman.JPG" alt="Second image">
-            <img src="../assets/Scan.JPG" alt="Third image">
-        </div>
+        <!-- Image Gallery -->
+        <section class="pb-5">
+            <div class="container px-lg-5">
+                <div class="row g-3"> <!-- g-3 adds a clean gap between the columns -->
+                    <div class="col-4">
+                        <img src="../assets/Cave.JPG" alt="Cave Environment" class="img-fluid rounded shadow-sm">
+                    </div>
+                    <div class="col-4">
+                        <img src="../assets/Caveman.JPG" alt="Caveman Character" class="img-fluid rounded shadow-sm">
+                    </div>
+                    <div class="col-4">
+                        <img src="../assets/Scan.JPG" alt="Environment Scan" class="img-fluid rounded shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Horizontal Cards Section -->
         <section class="py-5">

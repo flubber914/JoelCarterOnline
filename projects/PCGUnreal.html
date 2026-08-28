@@ -14,7 +14,7 @@
         <!-- Responsive navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-lg-5">
-                <a class="navbar-brand" href="../projects.html">Portfolio</a>
+                <a class="navbar-brand" href="../projects.html">Joel Carter</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -32,37 +32,54 @@
         <!-- About Me Header -->
         <header class="py-5 bg-light">
             <div class="container px-lg-5 text-center">
-                <h1 class="display-5 fw-bold">Procedural Content Generation</h1>
-                <p class="fs-4">A mushroom cave made with procedural generation, using Houdini and Unreal Engine.</p>
+                <h1 class="display-5 fw-bold">Procedural Generation</h1>
+                <p class="fs-4 text-muted">A dynamic mushroom cave environment generated using Houdini and Unreal Engine.</p>
             </div>
         </header>
 
-        <!-- About Me Text Box -->
+        <!-- About Project Text Box -->
         <section class="py-4">
             <div class="container px-lg-5">
                 <div class="p-4 bg-white rounded-3 shadow-sm">
                     <p class="fs-5">
-                        This world was made at university in my final year.
+                        Developed as a final-year university project, this environment explores procedural generation techniques to dynamically construct diverse cave layouts. While some foundational prop assets were sourced from Fab, the core technical focus was building robust, rules-based systems for terrain and asset spawning.
                     </p>
-                    <p class="fs-5">
-                        Some assets were gathered from fab.com.
-                    </p>
-                    <p class="fs-5">
-                        The mushrooms were created within Houdini, a procedural 3D model generating program, and imported into Unreal to make random caves.
-                        The walls were also randomly generated to create different shapes each time.
-                        The ground is painted with random mushrooms as well, based on the different textures sitting on the ground and the height of the stones.
-                    <p class="fs-5">
-                        Click <a href="https://youtu.be/IjI0-RBax7Q">here</a> to watch development video, result shown at beginning.
-                    </p>
+                    
+                    <hr>
+                    
+                    <h5 class="fw-bold mt-4">Core Features</h5>
+                    <ul class="fs-5 list-unstyled mb-4">
+                        <li class="mb-2"><strong>Houdini Asset Generation:</strong> Engineered procedural 3D mushroom models in Houdini, allowing for infinite variations and mutations when imported into Unreal.</li>
+                        <li class="mb-2"><strong>Dynamic Cave Structures:</strong> Implemented systems to randomly generate structural cave walls, ensuring entirely unique room shapes on every iteration.</li>
+                        <li class="mb-2"><strong>Context-Aware Spawning:</strong> Developed logic to automatically populate the ground with randomized flora based on underlying terrain textures and stone elevation data.</li>
+                    </ul>
+
+                    <!-- Project Links -->
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a href="https://youtu.be/IjI0-RBax7Q" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark px-4 py-2">
+                            Watch Generation Demo
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <div class="image-row">
-            <img src="../assets/Mushroom.JPG" alt="First image">
-            <img src="../assets/ProceduralUnreal.JPG" alt="Second image">
-            <img src="../assets/InPCGWorld.JPG" alt="Third image">
-        </div>
+        <!-- Image Gallery -->
+        <section class="pb-5">
+            <div class="container px-lg-5">
+                <div class="row g-3">
+                    <div class="col-4">
+                        <img src="../assets/Mushroom.JPG" alt="Procedural Mushroom Generation in Houdini" class="img-fluid rounded shadow-sm">
+                    </div>
+                    <div class="col-4">
+                        <img src="../assets/ProceduralUnreal.JPG" alt="Unreal Engine PCG Graph" class="img-fluid rounded shadow-sm">
+                    </div>
+                    <div class="col-4">
+                        <img src="../assets/InPCGWorld.JPG" alt="Final Procedurally Generated Cave World" class="img-fluid rounded shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Horizontal Cards Section -->
         <section class="py-5">
