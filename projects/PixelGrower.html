@@ -44,39 +44,89 @@
                     <p class="fs-5">
                         Play as a farmer on a floating island, buy seeds from the market to grow flowers, once they are grown, collect the gold by clicking the flower and buy more seeds. Upload an image so it shows within the upload window in game, the flowers will grow like pixels forming an image.
                     </p>
-                    <div class="row g-4 mb-4">
-                        <div class="col-md-6">
-                            <h4 class="fs-6 fw-bold text-uppercase text-primary mb-3">Controls</h4>
-                            <ul class="list-unstyled mb-0 d-flex flex-column gap-2 small">
-                                <li><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> — Move character</li>
-                                <li><kbd>Hold RMB</kbd> — Free look camera</li>
-                                <li><kbd>RMB + LMB</kbd> — Throw / Plant seed</li>
-                                <li><kbd>E</kbd> — Buy seed (at stand)</li>
-                                <li><kbd>Space</kbd> — Jump</li>
-                                <li><kbd>LMB</kbd> — Harvest fully grown flowers</li>
-                                <li><kbd>Q</kbd> — Toggle Free-Cam mode <span class="text-muted">(Ascend: <kbd>Space</kbd> | Descend: <kbd>LCtrl</kbd>)</span></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <h4 class="fs-6 fw-bold text-uppercase text-primary mb-3">Gameplay Loop</h4>
-                            <ol class="small text-muted ps-3 mb-0 d-flex flex-column gap-2">
-                                <li>Start with <strong>50 Gold</strong> in your inventory.</li>
-                                <li>Upload any custom image via the in-game UI.</li>
-                                <li>Purchase seeds and sow them across the island.</li>
-                                <li>Wait for growth cycles to complete, then harvest for profit.</li>
-                            </ol>
-                        </div>
-                    </div>
                     <p class="fs-5">
-                        <a href="..." class="btn btn-outline-primary btn-sm">Download Standalone on Itch.io ↗</a>
+                        Engineered the complete runtime pipeline for custom image processing. Parsed local image files into 2D texture data, extracted individual pixel color values, and mapped those coordinates to a 3D world grid to dynamically instantiate and grow corresponding flower objects.                    
                     </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <p class="fs-5">
+                            <a href="https://flubber914.itch.io/pixel-grower" class="btn btn-outline-primary btn-sm">Download Standalone on Itch.io ↗</a>
+                        </p>
+                        <p class="fs-5">
+                            <a href="https://github.com/flubber914/Pixel_Grower" class="btn btn-outline-primary btn-sm">View Code on Github ↗</a>
+                        </p>
+                        <p>
+                            <a href="https://youtu.be/STAKDv-iE2g" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                            Watch Video on YouTube ↗
+                            </a>
+                        </p>
+                    </div>
+                    <div class="mb-4">
+                        <video autoplay loop muted playsinline controls class="w-100 rounded shadow-sm border">
+                            <source src="../assets/PixelGrower Showcase.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded small shadow-sm">
+                        <pre class="m-0"><code class="language-csharp">
+                        public void ResizeAndExtractColors()
+                        {
+                            if (sourceImage == null) return;
+
+                            // Step 1: Resize to 32x32
+                            resizedImage = new Texture2D(32, 32, TextureFormat.RGBA32, false);
+
+                            for (int y = 0; y < 32; y++)
+                            {
+                                for (int x = 0; x < 32; x++)
+                                {
+                                    float u = (float)x / 32f;
+                                    float v = (float)y / 32f;
+
+                                    Color sampledColor = sourceImage.GetPixelBilinear(u, v);
+                                    resizedImage.SetPixel(x, y, sampledColor);
+                                }
+                            }
+
+                            resizedImage.Apply();
+
+                            // Step 2: Extract colors into array
+                            pixelColors = resizedImage.GetPixels(); // returns Color[32*32] in row-major order
+
+                            ApplyColoursToPlants();
+                        }
+                        </code></pre>
+                    </div>
                 </div>
             </div>
         </section>
+        
 
         <section class="game-section py-5 text-center bg-dark text-white">
             <h2 class="mb-4">Play the Game</h2>
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <h4 class="fs-6 fw-bold text-uppercase text-primary mb-3">Controls</h4>
+                    <ul class="list-unstyled mb-0 d-flex flex-column gap-2 small">
+                        <li><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> — Move character</li>
+                        <li><kbd>Hold RMB</kbd> — Free look camera</li>
+                        <li><kbd>RMB + LMB</kbd> — Throw / Plant seed</li>
+                        <li><kbd>E</kbd> — Buy seed (at stand)</li>
+                        <li><kbd>Space</kbd> — Jump</li>
+                        <li><kbd>LMB</kbd> — Harvest fully grown flowers</li>
+                        <li><kbd>Q</kbd> — Toggle Free-Cam mode <span class="text-muted">(Ascend: <kbd>Space</kbd> | Descend: <kbd>LCtrl</kbd>)</span></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-6">
+                    <h4 class="fs-6 fw-bold text-uppercase text-primary mb-3">Gameplay Loop</h4>
+                    <ol class="small text-muted ps-3 mb-0 d-flex flex-column gap-2">
+                        <li>Start with <strong>50 Gold</strong> in your inventory.</li>
+                        <li>Upload any custom image via the in-game UI.</li>
+                        <li>Purchase seeds and sow them across the island.</li>
+                        <li>Wait for growth cycles to complete, then harvest for profit.</li>
+                    </ol>
+                </div>
+            </div>
             <div class="game-wrapper mx-auto">
                 <iframe 
                     src="glbuilds/pixelGrowerGl/index.html" 
