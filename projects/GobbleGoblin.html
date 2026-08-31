@@ -44,18 +44,64 @@
                     <p class="fs-5">
                         Play as a poisoned goblin eating fruits to survive, other goblins attack so you must switch between puzzle and shooter.
                     </p>
-                    <div class="bg-light p-3 rounded mb-4 border">
-                        <h4 class="fs-6 fw-bold text-uppercase text-primary mb-2">Core Mechanic</h4>
-                        <p class="small text-dark mb-0">
-                            Press <kbd>Space</kbd> to instantly swap between Puzzle View and FPS View.<br>
-                            <span class="text-muted fst-italic">Full tutorial and controls are provided in-game.</span>
+                    <p class="fs-5">
+                        Engineered the complete gameplay pipeline from scratch. I programmed the procedural grid generation for dynamic fruit spawning, designed adjacency and colour matching algorithms to detect valid player moves, and implemented the combo-chaining logic that drives the scoring and health regeneration systems.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <p>
+                            <a href="https://flubber914.itch.io/gobble-goblin" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                                View on Itch.io ↗
+                            </a>
+                        </p>
+                        <p>
+                            <a href="https://github.com/flubber914/GameCanJam" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                                View on Github ↗
+                            </a>
+                        </p>
+                        <p>
+                            <a href="https://youtu.be/D-BeKSd60Gg" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                                View on Youtube ↗
+                            </a>
                         </p>
                     </div>
-                    <div class="pt-3 border-top d-flex align-items-center justify-content-between flex-wrap gap-2">
-                        <span class="small text-muted">Prefer a standalone desktop build?</span>
-                        <a href="https://flubber914.itch.io/gobble-goblin" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
-                            View on Itch.io ↗
-                        </a>
+                    <div class="mb-4">
+                        <video autoplay loop muted playsinline controls class="w-100 rounded shadow-sm border">
+                            <source src="../assets/GobbleGoblinShowcase.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded small shadow-sm">
+                        <pre class="m-0"><code class="language-csharp">
+                        void CheckNextFruit(FruitController fruit)
+                        {
+                            if (LastFruit == -1)
+                            {
+                                LastFruit = fruit.m_fruitType;
+                                LastPair = fruit.m_fruitPair;
+                                LastX = fruit.transform.position.x; LastZ = fruit.transform.position.z;
+                                fruit.transform.localScale *= 1.3f;
+                                fruit.m_clicked = true;
+                                CurrentSelectedFruit.position = fruit.transform.position;
+                                CurrentSelectedFruit.gameObject.SetActive(true);
+                                return;
+                            }
+                            if ((fruit.m_fruitType == LastFruit  || (fruit.m_fruitPair != -1 && fruit.m_fruitPair == LastPair)) &&  fruit.m_clicked == false)
+                            {
+                                if (Mathf.Abs(fruit.transform.position.x - LastX) <= 1 && Mathf.Abs(fruit.transform.position.z - LastZ) <= 1)
+                                {
+                                    Chain++;
+                                    Score += Chain;
+                                    fruit.transform.localScale *= 1.5f;
+                                    LastFruit = fruit.m_fruitType;
+                                    LastPair = fruit.m_fruitPair;
+                                    LastX = fruit.transform.position.x; LastZ = fruit.transform.position.z;
+                                    CurrentSelectedFruit.position = fruit.transform.position;
+                                    CurrentSelectedFruit.gameObject.SetActive(true);
+                                    fruit.m_clicked = true;
+                                }
+                            }
+                        }
+                        </code></pre>
                     </div>
                 </div>
             </div>
@@ -63,6 +109,13 @@
 
         <section class="game-section py-5 text-center bg-dark text-white">
             <h2 class="mb-4">Play the Game</h2>
+            <div class="bg-light p-3 rounded mb-4 border">
+                <h4 class="fs-6 fw-bold text-uppercase text-primary mb-2">Core Mechanic</h4>
+                <p class="small text-dark mb-0">
+                    Press <kbd>Space</kbd> to instantly swap between Puzzle View and FPS View.<br>
+                    <span class="text-muted fst-italic">Full tutorial and controls are provided in-game.</span>
+                </p>
+            </div>
             <div class="game-wrapper mx-auto">
                 <iframe 
                     src="glbuilds/gobbleGoblinGl/index.html" 
