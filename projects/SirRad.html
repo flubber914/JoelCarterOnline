@@ -38,56 +38,64 @@
         </header>
 
         <!-- About Me Text Box -->
-        <div class="card border-0 shadow-sm mb-5 text-start">
-            <div class="card-body p-4 p-lg-5">
+        <section class="py-4">
+            <div class="container px-lg-5">
                 
-                <!-- Important Gameplay Alerts -->
-                <div class="alert alert-warning border-0 bg-warning bg-opacity-10 text-dark mb-4 p-3 d-flex flex-column gap-1" role="alert">
-                    <span class="small fw-bold">🔊 Audio Warning: Music auto-plays upon loading and may be loud!</span>
-                    <span class="small">🖱️ Press <kbd>ESC</kbd> to unlock your mouse if it gets stuck in the browser window.</span>
-                </div>
-
-                <!-- Overview -->
-                <h3 class="fs-5 fw-bold mb-3">About the Project</h3>
-                <p class="text-muted mb-4">
-                    Play as Sir Rad, a knight who abandons his post defending the castle to perform sick stunts instead. The core technical objective of this university project was to architect a custom 2D engine from scratch in C++ and tie custom audio tracks (including my own vocals) directly to the gameplay mechanics.
-                </p>
-
-                <!-- Tech Stack & Links Grid -->
-                <div class="row g-4 pt-3 border-top">
-                    
-                    <div class="col-md-6">
-                        <h4 class="fs-6 fw-bold text-uppercase text-primary mb-3">Tech Stack</h4>
-                        <ul class="list-unstyled mb-0 d-flex flex-column gap-2 small text-muted">
-                            <li><strong>Language:</strong> C++</li>
-                            <li><strong>Framework:</strong> SDL2</li>
-                            <li><strong>Deployment:</strong> Emscripten (WebAssembly)</li>
-                            <li><strong>Features:</strong> Audio-driven mechanics & custom physics</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <h4 class="fs-6 fw-bold text-uppercase text-primary mb-3">Project Links</h4>
-                        <div class="d-flex flex-column gap-2">
-                            <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-sm text-start w-100">
-                                View C++ Source Code ↗
-                            </a>
-                            <a href="https://www.youtube.com/watch?v=IOQHJ-akaR0" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger btn-sm text-start w-100">
-                                Watch Gameplay on YouTube ↗
-                            </a>
+                <!-- The Sir Rad Card now sits safely inside the container -->
+                <div class="card border-0 shadow-sm mb-5 text-start">
+                    <div class="card-body p-4 p-lg-5">
+                        
+                        <!-- Important Gameplay Alerts -->
+                        <div class="alert alert-warning border-0 bg-warning bg-opacity-10 text-dark mb-4 p-3 d-flex flex-column gap-1" role="alert">
+                            <span class="small fw-bold">🔊 Audio Warning: Music auto-plays upon loading and may be loud!</span>
+                            <span class="small">🖱️ Press <kbd>ESC</kbd> to unlock your mouse if it gets stuck in the browser window.</span>
                         </div>
-                    </div>
-                    <div class="mb-4">
-                        <video autoplay loop muted playsinline controls class="w-100 rounded shadow-sm border">
-                            <source src="../assets/SirRadCustom++SDL2Engine.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
 
+                        <!-- Overview -->
+                        <h3 class="fs-5 fw-bold mb-3">About the Project</h3>
+                        <p class="text-muted mb-4">
+                            Play as Sir Rad, a knight who abandons his post defending the castle to perform sick stunts instead. The core technical objective of this university project was to architect a custom 2D engine from scratch in C++ and tie custom audio tracks (including my own vocals) directly to the gameplay mechanics.
+                        </p>
+
+                        <!-- Tech Stack & Links Grid -->
+                        <div class="row g-4 pt-3 border-top mb-4">
+                            
+                            <div class="col-md-6">
+                                <h4 class="fs-6 fw-bold text-uppercase text-primary mb-3">Tech Stack</h4>
+                                <ul class="list-unstyled mb-0 d-flex flex-column gap-2 small text-muted">
+                                    <li><strong>Language:</strong> C++</li>
+                                    <li><strong>Framework:</strong> SDL2</li>
+                                    <li><strong>Deployment:</strong> Emscripten (WebAssembly)</li>
+                                    <li><strong>Features:</strong> Audio-driven mechanics & custom physics</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <h4 class="fs-6 fw-bold text-uppercase text-primary mb-3">Project Links</h4>
+                                <div class="d-flex flex-column gap-2">
+                                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-sm text-start w-100">
+                                        View C++ Source Code ↗
+                                    </a>
+                                    <a href="https://www.youtube.com/watch?v=IOQHJ-akaR0" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger btn-sm text-start w-100">
+                                        Watch Gameplay on YouTube ↗
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Embedded Video -->
+                        <div class="mb-4">
+                            <video autoplay loop muted playsinline controls class="w-100 rounded shadow-sm border">
+                                <source src="../assets/SirRadCustom++SDL2Engine.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                    </div>
                 </div>
-
+                
             </div>
-        </div>
+        </section>
 
         <section class="game-section py-5 text-center bg-dark text-white">
             <h2 class="mb-4">Play the Game</h2>
