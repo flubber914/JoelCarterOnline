@@ -44,29 +44,88 @@
                     <p class="fs-5">
                         This project is the mechanical foundation for a larger 2D platformer I am developing, which will eventually feature rhythm-based magic combat. While the rhythm mechanics are still in development, this build showcases the fluid, responsive character movement system that will drive the core gameplay.
                     </p>
-                    <p class="fs-5">
-                        You can view the full source code on my <a href="https://github.com/flubber914/Power-In-Time" target="_blank" rel="noopener noreferrer">GitHub</a>.
+                    <p>
+                        This project features a responsive character controller that prototypes core mechanics for an upcoming 2.5D platformer. It also showcases a custom 3D-to-2D asset pipeline, converting rigged Blender animations into optimized Unity spritesheets to streamline workflow.
                     </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <p>
+                            <a href="https://github.com/flubber914/Power-In-Time" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                                View on Github ↗
+                            </a>
+                        </p>
+                        <p>
+                            <a href="https://youtu.be/xChZ84mJEzs" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+                                View on Youtube ↗
+                            </a>
+                        </p>
+                    </div>
                     <p class="fs-5 text-muted">
                         <strong>Browser Note:</strong> For the best experience, scroll to the bottom of the Unity window and click the fullscreen icon. Press <kbd>ESC</kbd> to exit.
                     </p>
-                    <hr>
-                    <h5 class="fw-bold mt-4">Controls</h5>
-                    <ul class="fs-5 list-unstyled">
-                        <li><strong>Move:</strong> A / D</li>
-                        <li><strong>Jump:</strong> Space (Jump off a wall to wall-jump)</li>
-                        <li><strong>Sprint:</strong> Shift</li>
-                        <li><strong>Roll:</strong> Ctrl</li>
-                        <li><strong>Attack:</strong> Left Click</li>
-                        <li><strong>Interact:</strong> F (with the orb)</li>
-                        <li><strong>Wall Slide:</strong> Run into a wall</li>
-                    </ul>
                 </div>
+                <div class="mb-4">
+                    <video autoplay loop muted playsinline controls class="w-100 rounded shadow-sm border">
+                        <source src="../assets/PowerInTimeShowcase.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="bg-dark text-light p-3 rounded small shadow-sm">
+                        <pre class="m-0"><code class="language-csharp">
+                            IEnumerator RollRoutine()
+                            {
+                                isRolling = true;
+                                animator.SetTrigger("Roll");
+
+                                // Switch to roll collider
+                                standingCollider.enabled = false;
+                                rollCollider.enabled = true;
+
+                                float t = 0f;
+                                float dir = spriteRenderer.flipX ? -1f : 1f;
+
+                                while (t < rollDuration)
+                                {
+                                    // Apply roll velocity
+                                    velocity.x = dir * rollSpeed;
+                                    targetVelocity.x = velocity.x;
+
+                                    // Bounce off walls
+                                    if (HitWall(dir))
+                                        dir *= -1f;
+
+                                    t += Time.deltaTime;
+                                    if (velocity.x > 0.1f) spriteRenderer.flipX = false;
+                                    if (velocity.x < -0.1f) spriteRenderer.flipX = true;
+                                    yield return null;
+                                }
+
+                                rollCollider.enabled = false;
+                                standingCollider.enabled = true;
+                                isRolling = false;
+                                if (!CanStandUp())
+                                {
+                                    StartCoroutine(RollRoutine());
+                                }
+                            }
+                        </code></pre>
+                    </div>
             </div>
         </section>
 
         <section class="game-section">
             <h2>Play the Game</h2>
+            <div class="col-md-6">
+                <h4 class="fs-6 fw-bold text-uppercase text-primary mb-3">Controls</h4>
+                <ul class="list-unstyled mb-0 d-flex flex-column gap-2 small">
+                    <li><kbd>A</kbd> <kbd>D</kbd> — Move</li>
+                    <li><kbd>Space</kbd> — Jump <span class="text-muted">(Jump off a wall to wall-jump)</span></li>
+                    <li><kbd>Shift</kbd> — Sprint</li>
+                    <li><kbd>Ctrl</kbd> — Roll</li>
+                    <li><kbd>LMB</kbd> — Attack</li>
+                    <li><kbd>F</kbd> — Interact <span class="text-muted">(with the orb)</span></li>
+                    <li>Run into a wall — Wall Slide</li>
+                </ul>
+            </div>
             <div class="game-wrapper">
                 <iframe 
                     src="glbuilds/powerInTimeGl/index.html" 
