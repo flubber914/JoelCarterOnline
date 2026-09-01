@@ -70,38 +70,45 @@
                             Your browser does not support the video tag.
                         </video>
                     </div>
-                    <div class="bg-dark text-light p-3 rounded small shadow-sm">
-                        <pre class="m-0"><code class="language-csharp">
-                        void CheckNextFruit(FruitController fruit)
-                        {
-                            if (LastFruit == -1)
-                            {
-                                LastFruit = fruit.m_fruitType;
-                                LastPair = fruit.m_fruitPair;
-                                LastX = fruit.transform.position.x; LastZ = fruit.transform.position.z;
-                                fruit.transform.localScale *= 1.3f;
-                                fruit.m_clicked = true;
-                                CurrentSelectedFruit.position = fruit.transform.position;
-                                CurrentSelectedFruit.gameObject.SetActive(true);
-                                return;
-                            }
-                            if ((fruit.m_fruitType == LastFruit  || (fruit.m_fruitPair != -1 && fruit.m_fruitPair == LastPair)) &&  fruit.m_clicked == false)
-                            {
-                                if (Mathf.Abs(fruit.transform.position.x - LastX) <= 1 && Mathf.Abs(fruit.transform.position.z - LastZ) <= 1)
+                    <div class="col-12 mb-4">
+                        <figure class="figure w-100">
+                            <div class="bg-dark text-light p-3 rounded shadow-sm text-start">
+                                <pre class="m-0"><code class="language-csharp">
+                                void CheckNextFruit(FruitController fruit)
                                 {
-                                    Chain++;
-                                    Score += Chain;
-                                    fruit.transform.localScale *= 1.5f;
-                                    LastFruit = fruit.m_fruitType;
-                                    LastPair = fruit.m_fruitPair;
-                                    LastX = fruit.transform.position.x; LastZ = fruit.transform.position.z;
-                                    CurrentSelectedFruit.position = fruit.transform.position;
-                                    CurrentSelectedFruit.gameObject.SetActive(true);
-                                    fruit.m_clicked = true;
+                                    if (LastFruit == -1)
+                                    {
+                                        LastFruit = fruit.m_fruitType;
+                                        LastPair = fruit.m_fruitPair;
+                                        LastX = fruit.transform.position.x; LastZ = fruit.transform.position.z;
+                                        fruit.transform.localScale *= 1.3f;
+                                        fruit.m_clicked = true;
+                                        CurrentSelectedFruit.position = fruit.transform.position;
+                                        CurrentSelectedFruit.gameObject.SetActive(true);
+                                        return;
+                                    }
+                                    if ((fruit.m_fruitType == LastFruit  || (fruit.m_fruitPair != -1 && fruit.m_fruitPair == LastPair)) &&  fruit.m_clicked == false)
+                                    {
+                                        if (Mathf.Abs(fruit.transform.position.x - LastX) <= 1 && Mathf.Abs(fruit.transform.position.z - LastZ) <= 1)
+                                        {
+                                            Chain++;
+                                            Score += Chain;
+                                            fruit.transform.localScale *= 1.5f;
+                                            LastFruit = fruit.m_fruitType;
+                                            LastPair = fruit.m_fruitPair;
+                                            LastX = fruit.transform.position.x; LastZ = fruit.transform.position.z;
+                                            CurrentSelectedFruit.position = fruit.transform.position;
+                                            CurrentSelectedFruit.gameObject.SetActive(true);
+                                            fruit.m_clicked = true;
+                                        }
+                                    }
                                 }
-                            }
-                        }
-                        </code></pre>
+                                </code></pre>
+                            </div>
+                            <figcaption class="figure-caption text-center mt-2">
+                                <strong>Chain Matching Logic:</strong> Unity C# gameplay script managing match-three or chain-linking mechanics. Validates fruit types or pairs, enforces a maximum distance constraint (`<= 1`) between selections, and calculates scaling combo scores based on the active chain length.
+                            </figcaption>
+                        </figure>
                     </div>
                 </div>
             </div>

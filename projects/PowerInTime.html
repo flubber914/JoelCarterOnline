@@ -66,8 +66,10 @@
                         Your browser does not support the video tag.
                     </video>
                 </div>
-                <div class="bg-dark text-light p-3 rounded small shadow-sm">
-                        <pre class="m-0"><code class="language-csharp">
+                <div class="col-12 mb-4">
+                    <figure class="figure w-100">
+                        <div class="bg-dark text-light p-3 rounded shadow-sm text-start">
+                            <pre class="m-0"><code class="language-csharp">
                             IEnumerator RollRoutine()
                             {
                                 isRolling = true;
@@ -99,13 +101,20 @@
                                 rollCollider.enabled = false;
                                 standingCollider.enabled = true;
                                 isRolling = false;
+                                
+                                // Prevent clipping into ceilings
                                 if (!CanStandUp())
                                 {
                                     StartCoroutine(RollRoutine());
                                 }
                             }
-                        </code></pre>
-                    </div>
+                            </code></pre>
+                        </div>
+                        <figcaption class="figure-caption text-center mt-2">
+                            <strong>State Management via Coroutine:</strong> Unity C# logic for a time-based rolling mechanic. Features dynamic collider swapping to adjust the player's hitbox, integrated wall-bounce detection, and a spatial ceiling check (`CanStandUp`) to prevent geometry clipping if the roll ends in a confined space.
+                        </figcaption>
+                    </figure>
+                </div>
             </div>
         </section>
 

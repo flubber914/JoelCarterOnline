@@ -9,6 +9,7 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/css/glightbox.css" />
     </head>
     <body>
         <!-- Responsive navbar -->
@@ -60,10 +61,10 @@
                             View Source on GitHub
                         </a>
                         <a href="https://youtu.be/RTKNgH3MOZg?t=523" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark px-4 py-2">
-                            Watch Gameplay Demo
+                            Watch Gull Gameplay Demo
                         </a>
                         <a href="https://youtu.be/WEBcdCWFntM" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary px-4 py-2">
-                            Texture Graphics Demo
+                            Texture Graphics Full Demo
                         </a>
                     </div>
                 </div>
@@ -73,31 +74,42 @@
                         Your browser does not support the video tag.
                     </video>
                 </div>
+                <div class="col-12 mb-4">
+                    <figure class="figure w-100">
+                        <a href="../assets/ComplexMaterial.JPG" class="glightbox" data-gallery="portfolio-gallery">
+                            <img src="../assets/ComplexMaterial.JPG" alt="Unreal Engine Complex Material Graph" class="img-fluid rounded shadow-sm">
+                        </a>
+                        <figcaption class="figure-caption text-center mt-2">
+                            <strong>Animated Scanner Shader:</strong> Combined standard Material Graph logic with custom HLSL to generate a dynamic, time-based warping effect for an in-game scanning device.
+                        </figcaption>
+                    </figure>
+                </div>
                 <div class="mb-4">
                     <video autoplay loop muted playsinline controls class="w-100 rounded shadow-sm border">
                         <source src="../assets/UnrealGraphicsShowcase2.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
-            </div>
-        </section>
-
-        <!-- Image Gallery -->
-        <section class="pb-5">
-            <div class="container px-lg-5">
-                <div class="row g-3"> <!-- g-3 adds a clean gap between the columns -->
-                    <div class="col-4">
-                        <img src="../assets/Cave.JPG" alt="Cave Environment" class="img-fluid rounded shadow-sm">
-                    </div>
-                    <div class="col-4">
-                        <img src="../assets/Caveman.JPG" alt="Caveman Character" class="img-fluid rounded shadow-sm">
-                    </div>
-                    <div class="col-4">
-                        <img src="../assets/Scan.JPG" alt="Environment Scan" class="img-fluid rounded shadow-sm">
-                    </div>
+                <div class="col-12 mb-4">
+                    <figure class="figure w-100">
+                        <a href="../assets/UnrealCharacterController.JPG" class="glightbox" data-gallery="portfolio-gallery">
+                            <img src="../assets/UnrealCharacterController.JPG" alt="Unreal Engine Custom Character Controller Logic" class="img-fluid rounded shadow-sm">
+                        </a>
+                        <figcaption class="figure-caption text-center mt-2">
+                            <strong>Custom Character Controller:</strong> Node graph logic detailing the custom movement and input handling utilized for both the CaveMan and Alien playable characters.
+                        </figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/js/glightbox.min.js"></script>
+        <script>
+            // Initialize the lightbox
+            const lightbox = GLightbox({
+                selector: '.glightbox'
+            });
+        </script>
 
         <!-- Horizontal Cards Section -->
         <section class="py-5">

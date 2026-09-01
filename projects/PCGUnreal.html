@@ -9,6 +9,7 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/css/glightbox.css" />
     </head>
     <body>
         <!-- Responsive navbar -->
@@ -56,8 +57,49 @@
 
                     <!-- Project Links -->
                     <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a href="https://github.com/flubber914/Unreal_PCG_Mushroom_Forest" target="_blank" rel="noopener noreferrer" class="btn btn-dark px-4 py-2">
+                            View Source on GitHub
+                        </a>
                         <a href="https://youtu.be/IjI0-RBax7Q" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark px-4 py-2">
-                            Watch Generation Demo
+                            Watch Full Generation Demo
+                        </a>
+                    </div>
+                    <div class="mb-4">
+                    <video autoplay loop muted playsinline controls class="w-100 rounded shadow-sm border">
+                        <source src="../assets/PCGShowcase.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="col-12 mb-4">
+                        <a href="../assets/MushroomSpawnGraph.JPG" class="glightbox" data-gallery="portfolio-gallery">
+                            <img src="../assets/MushroomSpawnGraph.JPG" alt="Small Mushroom Spawn Graph" class="img-fluid rounded shadow-sm">
+                        </a>
+                        
+                        <figcaption class="figure-caption text-center mt-2">
+                            <strong>Landscape Layer Filtering:</strong> Utilized PCG Attribute Filters to read the underlying Landscape Layers. This routes the logic to ensure specific mushroom variants only generate on appropriate soil types, while dynamically avoiding man-made paths and water volumes.
+                        </figcaption>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pb-5">
+            <div class="container px-lg-5">
+                <div class="row g-3">
+                    <div class="col-4">
+                        <!-- Make sure this anchor tag is here -->
+                        <a href="../assets/Mushroom.JPG" class="glightbox" data-gallery="portfolio-gallery">
+                            <img src="../assets/Mushroom.JPG" alt="Procedural Mushroom Generation in Houdini" class="img-fluid rounded shadow-sm">
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="../assets/ProceduralUnreal.JPG" class="glightbox" data-gallery="portfolio-gallery">
+                            <img src="../assets/ProceduralUnreal.JPG" alt="Unreal Engine PCG Graph" class="img-fluid rounded shadow-sm">
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="../assets/InPCGWorld.JPG" class="glightbox" data-gallery="portfolio-gallery">
+                            <img src="../assets/InPCGWorld.JPG" alt="Final Procedurally Generated Cave World" class="img-fluid rounded shadow-sm">
                         </a>
                     </div>
                 </div>
@@ -65,21 +107,13 @@
         </section>
 
         <!-- Image Gallery -->
-        <section class="pb-5">
-            <div class="container px-lg-5">
-                <div class="row g-3">
-                    <div class="col-4">
-                        <img src="../assets/Mushroom.JPG" alt="Procedural Mushroom Generation in Houdini" class="img-fluid rounded shadow-sm">
-                    </div>
-                    <div class="col-4">
-                        <img src="../assets/ProceduralUnreal.JPG" alt="Unreal Engine PCG Graph" class="img-fluid rounded shadow-sm">
-                    </div>
-                    <div class="col-4">
-                        <img src="../assets/InPCGWorld.JPG" alt="Final Procedurally Generated Cave World" class="img-fluid rounded shadow-sm">
-                    </div>
-                </div>
-            </div>
-        </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/js/glightbox.min.js"></script>
+        <script>
+            // Initialize the lightbox
+            const lightbox = GLightbox({
+                selector: '.glightbox'
+            });
+        </script>
 
         <!-- Horizontal Cards Section -->
         <section class="py-5">

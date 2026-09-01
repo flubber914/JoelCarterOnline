@@ -66,35 +66,42 @@
                             Your browser does not support the video tag.
                         </video>
                     </div>
-                    <div class="bg-dark text-light p-3 rounded small shadow-sm">
-                        <pre class="m-0"><code class="language-csharp">
-                        public void ResizeAndExtractColors()
-                        {
-                            if (sourceImage == null) return;
-
-                            // Step 1: Resize to 32x32
-                            resizedImage = new Texture2D(32, 32, TextureFormat.RGBA32, false);
-
-                            for (int y = 0; y < 32; y++)
-                            {
-                                for (int x = 0; x < 32; x++)
+                    <div class="col-12 mb-4">
+                        <figure class="figure w-100">
+                            <div class="bg-dark text-light p-3 rounded shadow-sm text-start">
+                                <pre class="m-0"><code class="language-csharp">
+                                public void ResizeAndExtractColors()
                                 {
-                                    float u = (float)x / 32f;
-                                    float v = (float)y / 32f;
+                                    if (sourceImage == null) return;
 
-                                    Color sampledColor = sourceImage.GetPixelBilinear(u, v);
-                                    resizedImage.SetPixel(x, y, sampledColor);
+                                    // Step 1: Resize to 32x32
+                                    resizedImage = new Texture2D(32, 32, TextureFormat.RGBA32, false);
+
+                                    for (int y = 0; y < 32; y++)
+                                    {
+                                        for (int x = 0; x < 32; x++)
+                                        {
+                                            float u = (float)x / 32f;
+                                            float v = (float)y / 32f;
+
+                                            Color sampledColor = sourceImage.GetPixelBilinear(u, v);
+                                            resizedImage.SetPixel(x, y, sampledColor);
+                                        }
+                                    }
+
+                                    resizedImage.Apply();
+
+                                    // Step 2: Extract colors into array
+                                    pixelColors = resizedImage.GetPixels(); // returns Color[32*32] in row-major order
+
+                                    ApplyColoursToPlants();
                                 }
-                            }
-
-                            resizedImage.Apply();
-
-                            // Step 2: Extract colors into array
-                            pixelColors = resizedImage.GetPixels(); // returns Color[32*32] in row-major order
-
-                            ApplyColoursToPlants();
-                        }
-                        </code></pre>
+                                </code></pre>
+                            </div>
+                            <figcaption class="figure-caption text-center mt-2">
+                                <strong>Runtime Texture Downsampling:</strong> Unity C# utility function that dynamically resamples high-resolution source textures down to a 32x32 grid using bilinear filtering. The optimized color data is extracted into a 1D array to procedurally drive the color palette of generated flowers.
+                            </figcaption>
+                        </figure>
                     </div>
                 </div>
             </div>
