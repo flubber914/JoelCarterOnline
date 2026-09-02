@@ -92,28 +92,46 @@
                             <figure class="figure w-100">
                                 <div class="bg-dark text-light p-3 rounded shadow-sm text-start">
                                     <pre class="m-0"><code class="language-cpp">
+                                    void Collision::UpdateGrid()
+                                    {
+                                        for (size_t i = 0; i < spatialGrid.size(); i++) {
+                                            spatialGrid[i].clear();
+                                        }
+
+                                        for (size_t i = 0; i < parent->allcharacters.size(); i++) {
+                                            Character* c = parent->allcharacters[i];
+                                            if (!c->GetSpawned()) continue;
+
+                                            CalculateHitZone(c);
+
+                                            int bucketIndex = c->collisionZone[0] + (c->collisionZone[1] * hitZoneDepth);
+
+                                            spatialGrid[bucketIndex].push_back(c);
+                                        }
+                                    }
+
                                     void Collision::CheckCollision(Character* thisChar)
                                     {
+                                        int bucketIndex = thisChar->collisionZone[0] + (thisChar->collisionZone[1] * hitZoneDepth);
+
+                                        std::vector<Character*>& localZone = spatialGrid[bucketIndex];
+
                                         int thisLX = thisChar->GetPosX();
                                         int thisRX = thisChar->GetPosX() + thisChar->GetSizeW();
                                         int thisTY = thisChar->GetPosY();
                                         int thisBY = thisChar->GetPosY() + thisChar->GetSizeH();
 
-                                        for (size_t i = 0; i < parent->allcharacters.size(); i++)
+                                        for (size_t i = 0; i < localZone.size(); i++)
                                         {
-                                            Character* other = parent->allcharacters[i];
+                                            Character* other = localZone[i];
 
-                                            // Guard clauses to prevent deep nesting
-                                            if (other == thisChar || !other->GetSpawned()) continue;
-                                            if (other->collisionZone[0] != thisChar->collisionZone[0] ||
-                                                other->collisionZone[1] != thisChar->collisionZone[1]) continue;
+                                            if (other == thisChar) continue;
 
                                             int listLX = other->GetPosX() - other->GetSizeW() / 2;
                                             int listRX = other->GetPosX() + other->GetSizeW() / 2;
                                             int listTY = other->GetPosY() - other->GetSizeH() / 2;
                                             int listBY = other->GetPosY() + other->GetSizeH() / 2;
 
-                                            // AABB Collision check
                                             if (thisRX > listLX && thisLX < listRX && thisTY < listBY && thisBY > listTY)
                                             {
                                                 thisChar->Collide(other);
@@ -123,7 +141,7 @@
                                     </code></pre>
                                 </div>
                                 <figcaption class="figure-caption text-center mt-2">
-                                    <strong>Optimized AABB Collision:</strong> Custom 2D Axis-Aligned Bounding Box collision logic in C++. Implemented early-exit guard clauses and spatial partitioning (collision zone checks) to cull unnecessary intersection math and optimize the core physics loop.
+                                    <strong>O(n) Spatial Hash Grid:</strong> Custom 2D collision system in C++. Implemented a spatial hash grid data structure to map entities into discrete memory buckets via O(1) coordinate hashing. This eliminates O(n²) brute-force iteration by restricting AABB intersection math to localized grid cells, vastly optimizing the engine's broad-phase physics loop.
                                 </figcaption>
                             </figure>
                         </div>
