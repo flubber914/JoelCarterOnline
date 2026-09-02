@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Projects</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/css/glightbox.css" />
+    </head>
+    <body>
+        <!-- Responsive navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-lg-5">
+                <a class="navbar-brand" href="../projects.html">Joel Carter</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../aboutme.html">About Me</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="../projects.html">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../contactdetails.html">Contact Details</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- About Me Header -->
+        <header class="py-5 bg-light">
+            <div class="container px-lg-5 text-center">
+                <h1 class="display-5 fw-bold">Under Iron Water</h1>
+                <p class="fs-4 text-muted">My second shipped title on Steam, proving the ability to execute a full production lifecycle from initial concept to final release.</p>
+            </div>
+        </header>
+
+        <!-- About Project Text Box -->
+        <section class="py-4">
+            <div class="container px-lg-5">
+                <div class="p-4 bg-white rounded-3 shadow-sm">
+                    <p class="fs-5">
+                        Under Iron Water is a first-person adventure game developed entirely from the ground up in Unity. Serving as the sole programmer and designer, I architected the core gameplay loops, custom physics interactions, and enemy AI, managing the entire production pipeline through to a public launch. The project required balancing scalable, performant systems with responsive game feel, specifically focusing on first-person puzzle platforming and event-driven narrative integration
+                    </p>
+                    
+                    <hr>
+                    
+                    <h5 class="fw-bold mt-4">Core Contributions</h5>
+                    <ul class="fs-5 list-unstyled mb-4">
+                        <li class="mb-2"><strong>Centralized First-Person Interaction:</strong> Architected a raycast system utilizing calls to safely handle both combat logic and puzzle triggers, combined with dynamic spatial calculations for VFX scaling.</li>
+                        <li class="mb-2"><strong>Dynamic Event-Driven Dialogue:</strong> Engineered a custom narrative delivery coroutine featuring procedural pacing based on string length. Optimized execution using cached references and early-exit guard clauses to prevent garbage collection spikes.</li>
+                        <li class="mb-2"><strong>World Scale & NavMesh Optimization:</strong> Constructed multi-elevation open environments. Managed the memory overhead of massive asset counts to ensure stable framerates and reliable AI pathfinding across first-person topography.</li>
+                    </ul>
+
+                    <!-- Project Links -->
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <a href="https://store.steampowered.com/app/1857040/Under_Iron_Water/" target="_blank" rel="noopener noreferrer" class="btn btn-dark px-4 py-2">
+                            View Steam Page
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 mb-4">
+                    <figure class="figure w-100">
+                        <div class="bg-dark text-light p-3 rounded shadow-sm text-start">
+                            <pre class="m-0"><code class="language-csharp">
+                            IEnumerator ConversationRoutine()
+                            {
+                                // Early exit guard clause reduces nesting depth
+                                if (m_isTalking) yield break; 
+                                
+                                m_isTalking = true;
+                                bool isActiveStoryNode = false;
+                                string[] lines = m_talkingLines;
+
+                                // Evaluate narrative state
+                                if (m_isStory)
+                                {
+                                    int currentStoryPoint = GameManager.instance.GetStoryPoint();
+                                    if (currentStoryPoint == storyPosition)
+                                    {
+                                        isActiveStoryNode = true;
+                                        lines = m_storyLines;
+                                    }
+                                    else if (currentStoryPoint > storyPosition)
+                                    {
+                                        lines = m_afterLines;
+                                    }
+                                }
+
+                                // Orient NPC to player (locking Y-axis to prevent tilting)
+                                Vector3 playerPos = GameManager.instance.m_Player.position;
+                                Vector3 lookPosition = new Vector3(playerPos.x, transform.position.y, playerPos.z);
+                                transform.LookAt(lookPosition, transform.up);
+
+                                // Utilize cached components instead of inline GetComponent calls for performance
+                                m_cachedPlayerMovement.SetInConversation(true);
+                                m_cachedIdleController.SetIsTalking(true);
+
+                                if (!m_hadConvo)
+                                {
+                                    m_hadConvo = true;
+                                    foreach (string line in lines)
+                                    {
+                                        SetCondition(4);
+                                        
+                                        // Trigger spatial audio with randomized pitch for natural voice variation
+                                        Vector3 voiceOrigin = transform.position + new Vector3(0, 1.7f, 0);
+                                        AudioManager.instance.PlayAtPosition(m_voice, voiceOrigin, false, AudioManager.instance.GetRandomPitch());
+                                        
+                                        GameManager.instance.m_GameText.SendText(line, colour);
+                                        
+                                        // Dynamic wait calculation based on character count
+                                        yield return new WaitForSeconds(line.Length * 0.1f);
+                                        
+                                        SetCondition(0);
+                                        yield return new WaitForSeconds(1f);
+                                    }
+                                    
+                                    // Adjust interaction collider post-conversation
+                                    UpdateColliderForPassiveState(); 
+                                }
+                                else
+                                {
+                                    // Fallback bark logic for repeated interactions
+                                    string finalLine = lines[lines.Length - 1];
+                                    SetCondition(4);
+                                    AudioManager.instance.PlayAtPosition(m_voice, transform.position + new Vector3(0, 1.7f, 0), false, AudioManager.instance.GetRandomPitch());
+                                    GameManager.instance.m_GameText.SendText(finalLine, colour);
+                                    
+                                    yield return new WaitForSeconds(finalLine.Length * 0.1f);
+                                    SetCondition(0);
+                                }
+
+                                // Cleanup and release state locks
+                                m_isTalking = false;
+                                m_cachedPlayerMovement.SetInConversation(false);
+                                m_cachedIdleController.SetIsTalking(false);
+
+                                if (isActiveStoryNode)
+                                {
+                                    GameManager.instance.NextStoryPosition();
+                                }
+                            }
+                            </code></pre>
+                        </div>
+                        <figcaption class="figure-caption text-center mt-2">
+                            <strong>Data Management for Screen Text:</strong> A dynamic, event-driven dialogue coroutine utilizing string-length calculation for procedural pacing, optimized with cached references and early-exit guard clauses to ensure zero garbage collection spikes during runtime.
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="mb-4">
+                    <video autoplay loop muted playsinline controls class="w-100 rounded shadow-sm border">
+                        <source src="../assets/UIWSpeech.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="col-12 mb-4">
+                    <figure class="figure w-100">
+                        <div class="bg-dark text-light p-3 rounded shadow-sm text-start">
+                            <pre class="m-0"><code class="language-csharp">
+                            void AttackDirection()
+                            {
+                                // Offset ray origin slightly ahead of the camera to prevent clipping
+                                Vector3 rayOrigin = m_mainCamera.transform.position + (m_mainCamera.transform.rotation * new Vector3(0, 0, 2f));
+
+                                if (Physics.Raycast(rayOrigin, m_mainCamera.transform.forward, out RaycastHit hitInfo, 100.0f, m_lightningLayerMask))
+                                {
+                                    if (!m_hit)
+                                    {
+                                        // TryGetComponent is the modern standard for avoiding GC spikes and repeated lookups
+                                        if (hitInfo.collider.TryGetComponent(out Taglist tagList))
+                                        {
+                                            if (tagList.GetIsEnemy() && hitInfo.collider.TryGetComponent(out EnemyStats enemy))
+                                            {
+                                                enemy.TakeDamage(20);
+                                            }
+                                            else if (tagList.GetIsCrystal() && hitInfo.collider.TryGetComponent(out CrystalActivator crystal))
+                                            {
+                                                crystal.ActivateCrystal();
+                                            }
+                                        }
+                                        m_hit = true;
+                                    }
+
+                                    // Dynamically scale the lightning particle shape to bridge the exact spatial distance
+                                    var shape = lightning.shape;
+                                    shape.scale = new Vector3(1, 1, Vector3.Distance(hitInfo.point, transform.position));
+
+                                    // Orient the visual effect directly toward the impact normal
+                                    transform.LookAt(hitInfo.point);
+                                }
+                            }
+                            </code></pre>
+                        </div>
+                        <figcaption class="figure-caption text-center mt-2">
+                            <strong>Raycasting for Magic Mechanic:</strong> A centralized first-person interaction system utilizing TryGetComponent calls to safely handle both combat damage and puzzle triggers, combined with dynamic spatial calculations to scale particle effects to the raycast impact point.
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="mb-4">
+                    <video autoplay loop muted playsinline controls class="w-100 rounded shadow-sm border">
+                        <source src="../assets/UIWZap.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.3.1/js/glightbox.min.js"></script>
+        <script>
+            // Initialize the lightbox
+            const lightbox = GLightbox({
+                selector: '.glightbox'
+            });
+        </script>
+
+        <!-- Horizontal Cards Section -->
+        <section class="py-5">
+            
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">&copy; 2025 - 2026 Joel Carter. All rights reserved</p></div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
